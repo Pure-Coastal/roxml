@@ -53,7 +53,7 @@ module ROXML
 
     def namespacify(what)
       if what.to_s.present? && opts.namespace != false && ns = [opts.namespace, @instance.class.roxml_namespace, @default_namespace].compact.map(&:to_s).first
-        require "rexml/xpath_parser"
+        require('rexml/xpath_parser') unless defined?(REXML::Parsers::XPathParser)
 
         parser = REXML::Parsers::XPathParser.new
         parsed = parser.parse what
